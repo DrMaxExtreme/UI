@@ -10,8 +10,8 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     [SerializeField] GameObject Button;
 
-    private Color _default—olor;
-    private Color _temp—olor;
+    private Color _defaultColor;
+    private Color _tempColor;
     private float _duration = 0.7f;
     private int _amplityde = 4;
     private float _animationScaleUp = 1.05f;
@@ -21,14 +21,14 @@ public class ButtonAnimations : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void Start()
     {
-        _default—olor = Button.GetComponent<Graphic>().color;
+        _defaultColor = Button.GetComponent<Graphic>().color;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         Button.transform.DOScale(new Vector2(_animationScaleUp, _animationScaleUp), _duration).SetEase(Ease.InOutFlash, _amplityde, _duration);
-        _temp—olor = Button.GetComponent<Graphic>().color = Color.Lerp(_default—olor, Color.gray, _duration);
-        Button.GetComponent<Graphic>().color = Color.Lerp(_temp—olor, _default—olor, _duration);
+        _tempColor = Button.GetComponent<Graphic>().color = Color.Lerp(_defaultColor, Color.gray, _duration);
+        Button.GetComponent<Graphic>().color = Color.Lerp(_tempColor, _defaultColor, _duration);
     }
 
     public void OnPointerDown(PointerEventData eventData)
